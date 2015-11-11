@@ -27,7 +27,7 @@ RUN set -x \
 
 ENV PATH /opt/logstash/bin:$PATH
 
-EXPOSE 8125 9200 9300
+EXPOSE 25826
 
 COPY docker-entrypoint.sh /
 

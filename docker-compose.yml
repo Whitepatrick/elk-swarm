@@ -5,22 +5,23 @@ elastic-sb:
   volumes:
    - ./elasticsearch/config:/usr/share/elasticsearch/data
    - ./elasticsearch/esdata:/usr/share/elasticsearch/esdata
+  container_name: "elastic-sb"
 
-logstash-fwdr-sb:
-  image: logstash-fwdr-sb
-  net: host
-  volumes:
-    - ./logstash-forwarder/config:/opt/conf
+#logstash-fwdr-sb:
+#  image: logstash-fwdr-sb
+#  net: elk-sb
+#  volumes:
+#    - ./logstash-forwarder/config:/opt/conf
 
 logstash-sb:
   image: logstash-sb
   net: host
   volumes:
     - ./logstash/config:/config
-  expose:
-    - "25826"
-  command: logstash -f /config/logstash-collectd.conf
+  container_name: "logstash-sb"
+  command: logstash -f /config/11-collectd.conf
 
 kibana-sb:
   image: kibana-sb
   net: host
+  container_name: "kibana-sb"
