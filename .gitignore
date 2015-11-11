@@ -4,3 +4,4 @@ elasticsearch/esdata/
 esdata/
 config/elasticsearch/a
 secrets/
+$PWD/
