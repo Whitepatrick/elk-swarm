@@ -1,11 +1,11 @@
 #!/bin/bash
 
-sudo docker build -t logstash-sb . \
+BASE=$HOME/workspace/elk-swarm/
 
-sudo docker run -d --rm \
-sudo docker run -d \
-  -v "$PWD"/config:/config \
+sudo docker run -itd \
+  --privileged \
+  -v "$BASE"/logstash/config:/config \
   --net=host \
-  --name logstash-sb \
+  --name=logstash-sb \
   logstash-sb \
-  logstash -f /config/logstash-*.conf
+  logstash -f /config/11-collectd.conf

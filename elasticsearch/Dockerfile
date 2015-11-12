@@ -39,14 +39,14 @@ RUN set -ex \
 	done
 
 COPY config/logging.yml /usr/share/elasticsearch/config/
-COPY config/elasticsearch.yml /usr/share/elasticsearch/config/
+#COPY config/elasticsearch.yml /usr/share/elasticsearch/config/
 
 VOLUME /usr/share/elasticsearch/data
-
+ENV ELASTICSEARCH_URL "elastic-sb:9200"
 COPY docker-entrypoint.sh /
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
-EXPOSE 9200
+EXPOSE 9200 9300
 
 CMD ["elasticsearch"]

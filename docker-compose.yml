@@ -1,21 +1,17 @@
 # docker-compose up -d
 elastic-sb:
   image: elastic-sb
-  net: host
+  hostname: "elastic-sb"
+  expose: ["9200", "9300"]
   volumes:
    - ./elasticsearch/config:/usr/share/elasticsearch/data
    - ./elasticsearch/esdata:/usr/share/elasticsearch/esdata
   container_name: "elastic-sb"
 
-#logstash-fwdr-sb:
-#  image: logstash-fwdr-sb
-#  net: elk-sb
-#  volumes:
-#    - ./logstash-forwarder/config:/opt/conf
-
 logstash-sb:
   image: logstash-sb
-  net: host
+  hostname: "logstash-sb"
+  expose: ["25826"]
   volumes:
     - ./logstash/config:/config
   container_name: "logstash-sb"
@@ -23,5 +19,6 @@ logstash-sb:
 
 kibana-sb:
   image: kibana-sb
-  net: host
+  hostname: "kibana-sb"
+  expose: ["5601"]
   container_name: "kibana-sb"
